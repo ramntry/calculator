@@ -1,6 +1,6 @@
 #pragma once
 
-#include "list.h"
+#include "stretchablestack.h"
 #include "oper.h"
 
 class StackMachine
@@ -16,7 +16,7 @@ class StackMachine
         void memoryOut();     // Печать содержимого памяти
     private:
         double memory[256];
-        List<Oper> stack;
+        StretchableStack stack;
         bool noError;
         void engine(char operation, Oper op2, Oper op1);
         double calc(char operation, double realOp2, double realOp1);
