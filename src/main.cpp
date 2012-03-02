@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int main()
+int cli_main(int argc, char **argv)
 {
     clog << "This program converts the infix notation to postfix\n"
          << "and calculates the expression\n"
@@ -40,5 +40,24 @@ int main()
     stackMachine.memoryOut();
 
     return 0;
+}
+
+int stackMashineRefactorTest()
+{
+    StackMachine stackmachine;
+
+    stackmachine.put(3.0);
+    stackmachine.put(2.0);
+    stackmachine.put('-');
+
+    cout << "3 - 2 = " << stackmachine.getValue() << endl;
+
+    return 0;
+}
+
+int main(int argc, char **argv)
+{
+    return stackMashineRefactorTest();
+//    return cli_main(argc, argv);
 }
 

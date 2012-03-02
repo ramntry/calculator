@@ -34,17 +34,32 @@ double StackMachine::calc(char operation, double realOp2, double realOp1)
     return res;
 }
 
-void StackMachine::put(Oper elem)
+void StackMachine::put(double operand)
 {
     if (!noError)
         return;
-    if (elem.isOperand)
-        stack.push(elem);
+    stack.push(Oper(operand));
+}
+
+void StackMachine::put(char operation)
+{
+    if (!noError)
+        return;
+    if (stack.size() < 2)  // Пока работают только бинарные
+        noError = false;   // операции
     else
-        if (stack.size() < 2)  // Пока работают только бинарные
-            noError = false;   // операции
-        else
-            engine(elem.operation, stack.pop(), stack.pop());
+        engine(operation, stack.pop(), stack.pop());
+}
+
+void StackMachine::put(Oper elem)
+{
+    if (elem.isOperand)
+    {
+        if (noError)
+            stack.push(elem);
+    }
+    else
+        put(elem.operation);
 }
 
 double StackMachine::checkOperand(Oper op)

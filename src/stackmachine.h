@@ -8,6 +8,8 @@ class StackMachine
     public:
         StackMachine();
         void put(Oper elem);  // Основной приемный шлюз
+        void put(double operand); // Перегрузки, необходимые для клиентского кода,
+        void put(char operation); // ... не использующего промежуточное oper-представление
         double getValue();    // Получение результата работы
         double getVar(char var);  // Доступ к сохраненным переменным
         bool isOK();          // Флаг ошибок
